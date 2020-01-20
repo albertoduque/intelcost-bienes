@@ -1,0 +1,48 @@
+CREATE SCHEMA `intelcost_bienes` ;
+
+CREATE TABLE `intelcost_bienes`.`ciudades` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(255) NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
+  
+  CREATE TABLE `intelcost_bienes`.`tipos` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(255) NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
+  
+  
+  CREATE TABLE `intelcost_bienes`.`bienes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `direccion` VARCHAR(255) NULL,
+  `ciudad_id` INT NULL DEFAULT NULL,
+  `telefono` VARCHAR(45) NULL,
+  `codigo_postal` VARCHAR(45) NULL,
+  `tipo_id` INT NULL DEFAULT NULL,
+  `precio` VARCHAR(45) NULL,
+  `created_at` VARCHAR(45) NULL DEFAULT 'CURRENT_TIMESTAMP',
+  PRIMARY KEY (`id`),
+  INDEX `fk_bienes_1_idx` (`ciudad_id` ASC),
+  INDEX `fk_bienes_2_idx` (`tipo_id` ASC),
+  CONSTRAINT `fk_bienes_1`
+    FOREIGN KEY (`ciudad_id`)
+    REFERENCES `intelcost_bienes`.`ciudades` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bienes_2`
+    FOREIGN KEY (`tipo_id`)
+    REFERENCES `intelcost_bienes`.`tipos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+    INSERT INTO `ciudades` (`id`, `nombre`, `created_at`) VALUES ('0', 'New York', CURRENT_TIMESTAMP);
+    INSERT INTO `ciudades` (`id`, `nombre`, `created_at`) VALUES ('1', 'Orlando', CURRENT_TIMESTAMP);
+    INSERT INTO `ciudades` (`id`, `nombre`, `created_at`) VALUES ('2', 'Los Angeles', CURRENT_TIMESTAMP);
+    INSERT INTO `ciudades` (`id`, `nombre`, `created_at`) VALUES ('4', 'Houston', CURRENT_TIMESTAMP);
+    INSERT INTO `ciudades` (`id`, `nombre`, `created_at`) VALUES ('7', 'Washington', CURRENT_TIMESTAMP);
+    INSERT INTO `ciudades` (`id`, `nombre`, `created_at`) VALUES ('10', 'Miami', CURRENT_TIMESTAMP);
+    
+    INSERT INTO `tipos` (`id`, `nombre`, `created_at`) VALUES ('0', 'Casa', CURRENT_TIMESTAMP);
+    INSERT INTO `tipos` (`id`, `nombre`, `created_at`) VALUES ('0', 'Casa de Campo', CURRENT_TIMESTAMP);
+    INSERT INTO `tipos` (`id`, `nombre`, `created_at`) VALUES ('0', 'Apartamento', CURRENT_TIMESTAMP);
